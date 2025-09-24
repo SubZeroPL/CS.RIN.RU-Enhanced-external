@@ -7,7 +7,7 @@
 // @version         1.1.12
 // @description     Everything that concerns CS.RIN.RU - Steam Underground Community but does not act on the site.
 // @description:fr  Tout ce qui concerne CS.RIN.RU - Steam Underground Community mais qui n'agit pas sur le site.
-// @description:pt  W.I.P.
+// @description:pt  Tudo o que diz respeito ao CS.RIN.RU - Steam Underground Community mas não age no site.
 // @description:tr  CS.RIN.RU sitesini ilgilendiren her şey - Steam Underground Topluluğu ancak sitede faaliyet göstermemektedir.
 // @author          CS.RIN.RU community
 // @match           *://store.steampowered.com/app/*
