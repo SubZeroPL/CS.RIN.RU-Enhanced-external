@@ -4,7 +4,7 @@
 // @name:pt         CS.RIN.RU Melhorado (Externo)
 // @name:tr         Genişletilmiş CS.RIN.RU (Ek)
 // @namespace       https://github.com/Altansar69/CS.RIN.RU-Enhanced-external
-// @version         1.1.12
+// @version         1.1.13
 // @description     Everything that concerns CS.RIN.RU - Steam Underground Community but does not act on the site.
 // @description:fr  Tout ce qui concerne CS.RIN.RU - Steam Underground Community mais qui n'agit pas sur le site.
 // @description:pt  Tudo o que diz respeito ao CS.RIN.RU - Steam Underground Community mas não age no site.
@@ -101,8 +101,19 @@ function addRinLinkToGGDeals() {
             console.log(error);
         },
         onload: function (response) {
-            const appId = getAppIdFromUrl(response.finalUrl);
-            if (!appId) return;
+            let appId = getAppIdFromUrl(response.finalUrl);
+            if (!appId) {
+                console.log("AppId not found on GGDeals page, trying to find it on Steam page...");
+                const doc = new DOMParser().parseFromString(response.responseText, "text/html");
+                const steamLink = doc.querySelector("a[href*='store.steampowered.com/app/']");
+                if (steamLink) {
+                    const steamUrl = steamLink.href;
+                    const appIdFromSteam = getAppIdFromUrl(steamUrl);
+                    if (appIdFromSteam) {
+                        appId = appIdFromSteam;
+                    }
+                }
+            }
             updatePage(appId, gameName, developer, rinButton, "ggdeals");
         }
     });
